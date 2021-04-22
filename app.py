@@ -62,13 +62,13 @@ state_21_status['Date_YMD'] = state_21_status['Date_YMD'].str[5:]
 
 # merge 2021 data with 2020 data
 state_21_list = list(state_21_status[select])
-n = len(state_20_status) - len(state_21_status)
-zeroes_list = [0]*n
-state_21_list.extend(zeroes_list)
+n = len(state_20_status) - len(state_21_status) # no of future datapoints
+zeroes_list = [-10]*n # creating buffer 
+state_21_list.extend(zeroes_list) 
 state_20_status['OR_21'] = state_21_list
 
-# replace 0s with NaN
-state_20_status['OR_21'] = state_20_status['OR_21'].replace(0, np.nan)
+#replacing buffer future points with NaN to prevent plotting of future datapoints
+state_20_status['OR_21'] = state_20_status['OR_21'].replace(-10, np.nan) 
 
 # -------------- PLOT ---------------
 fig = px.line(state_20_status,
@@ -89,13 +89,7 @@ def customLegendPlotly(fig, nameSwap):
 
 fig = customLegendPlotly(fig=fig, nameSwap = {select: '2020', 'OR_21':'2021'})
 
-# if all values are NaN in 2021
-value = True
-for i in state_20_status['OR_21'].isnull():
-    if not i:
-        value = False
-
-if trace and not value:
+if trace:
     result = pd.Series(state_20_status['OR_21']).last_valid_index()
     today_x = state_20_status.loc[result]['Date'][:6]
     today_y = int(state_20_status.loc[result]['OR_21'])
