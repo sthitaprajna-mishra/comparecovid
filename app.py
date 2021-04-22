@@ -67,7 +67,7 @@ zeroes_list = [-10]*n # creating buffer
 state_21_list.extend(zeroes_list) 
 state_20_status['OR_21'] = state_21_list
 
-#replacing buffer future points with NaN to prevent plotting of future datapoints
+# replacing buffer future points with NaN to prevent plotting of future datapoints
 state_20_status['OR_21'] = state_20_status['OR_21'].replace(-10, np.nan) 
 
 # -------------- PLOT ---------------
