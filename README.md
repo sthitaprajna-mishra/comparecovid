@@ -4,5 +4,5 @@ A web app which will be able to plot and contrast data related to this year's Co
 
 Users can select individual states or look at the national level. The different types of cases covered are - Confirmed, Recovered, and Deceased.
 
-Sample demo - https://github.com/sthitaprajna-mishra/comparecovid/blob/main/demo.jpeg
+Sample demo - ![demo](https://github.com/sthitaprajna-mishra/comparecovid/blob/main/demo.jpeg)
 
